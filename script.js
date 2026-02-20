@@ -38,7 +38,7 @@ async function submitPaid() {
     formData.append("email", email);
     formData.append("screenshot", file);
 
-    const res = await fetch("http://localhost:5000/paid", {
+    const res = await fetch("https://notdhruv-fx-website.onrender.com", {
       method: "POST",
       body: formData
     });
