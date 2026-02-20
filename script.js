@@ -38,10 +38,10 @@ async function submitPaid() {
     formData.append("email", email);
     formData.append("screenshot", file);
 
-    const res = await fetch("https://notdhruv-fx-website.onrender.com", {
-      method: "POST",
-      body: formData
-    });
+    fetch("https://your-real-render-link.onrender.com/send-email", {
+  method: "POST",
+  body: formData
+});
 
     const text = await res.text();
 
