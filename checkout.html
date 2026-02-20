@@ -3,13 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOTDHRUV.FX Checkout</title>
+<title>Checkout - NOTDHRUV.FX</title>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
   margin:0;
   padding:0;
@@ -17,207 +15,208 @@
   font-family:'Poppins',sans-serif;
 }
 
+/* 🌌 Animated Background */
 body{
-  background:#030014;
+  min-height:100vh;
+  background: radial-gradient(circle at top,#0f172a,#020617 70%);
   color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   overflow-x:hidden;
 }
 
-/* Background Glow */
+/* floating glow */
 body::before{
   content:"";
   position:fixed;
   width:600px;
   height:600px;
-  background:radial-gradient(circle,#7f00ff33,#00000000);
+  background: radial-gradient(circle,#00f0ff55,transparent 70%);
   top:-200px;
   left:-200px;
+  filter:blur(80px);
+  animation: floatGlow 8s ease-in-out infinite alternate;
   z-index:-1;
 }
 
-body::after{
-  content:"";
-  position:fixed;
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle,#00f0ff33,#00000000);
-  bottom:-200px;
-  right:-200px;
-  z-index:-1;
+@keyframes floatGlow{
+  to{ transform: translate(120px,80px); }
 }
 
-/* Loader */
-#loader{
-  position:fixed;
-  width:100%;
-  height:100vh;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  font-size:22px;
-  letter-spacing:2px;
-}
-
-/* Main Layout */
-.container{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-}
-
-.checkout-card{
-  width:360px;
+/* 🧊 Glass Card */
+.checkout-box{
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(25px);
+  border:1px solid rgba(255,255,255,0.08);
   padding:40px;
-  border-radius:28px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(25px);
+  border-radius:24px;
+  width:380px;
   box-shadow:
-    0 0 40px #7f00ff55,
-    inset 0 0 40px #00f0ff22;
-  animation:fadeUp 1s ease;
+    0 0 40px rgba(0,255,255,0.15),
+    inset 0 0 25px rgba(0,255,255,0.08);
+  text-align:center;
+  animation: fadeUp 0.8s ease;
 }
 
 @keyframes fadeUp{
-  from{opacity:0;transform:translateY(40px);} 
-  to{opacity:1;transform:translateY(0);} 
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
-.brand{
-  text-align:center;
-  font-size:26px;
+/* 🔥 Title */
+h2{
   font-weight:700;
-  margin-bottom:10px;
-  background:linear-gradient(45deg,#7f00ff,#00f0ff);
+  font-size:28px;
+  margin-bottom:8px;
+  background: linear-gradient(90deg,#00f0ff,#7f00ff);
   -webkit-background-clip:text;
-  background-clip:text;
   color:transparent;
 }
 
+/* subtitle */
 .subtitle{
-  text-align:center;
-  opacity:.7;
   font-size:13px;
-  margin-bottom:30px;
-}
-
-.product{
-  text-align:center;
+  opacity:0.7;
   margin-bottom:25px;
 }
 
+/* 💰 Price */
 .price{
-  font-size:28px;
+  font-size:30px;
+  font-weight:600;
+  margin-bottom:20px;
   color:#00f0ff;
-  margin-top:5px;
+  text-shadow:0 0 12px #00f0ff88;
 }
 
+/* 📝 Input */
 input{
   width:100%;
   padding:14px;
-  border:none;
-  border-radius:14px;
-  background:#090022;
+  margin:12px 0;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
   color:white;
-  margin-bottom:15px;
+  outline:none;
+  transition:0.25s;
 }
 
+input:focus{
+  border-color:#00f0ff;
+  box-shadow:0 0 10px #00f0ff55;
+}
+
+/* 🚀 Premium Button */
 button{
   width:100%;
-  padding:14px;
+  padding:15px;
+  margin-top:10px;
   border:none;
-  border-radius:50px;
-  background:linear-gradient(90deg,#7f00ff,#00f0ff);
-  color:white;
+  border-radius:999px;
+  font-size:16px;
   font-weight:600;
-  letter-spacing:1px;
   cursor:pointer;
-  transition:.3s;
+  background: linear-gradient(90deg,#00f0ff,#7f00ff);
+  color:white;
+  transition:0.25s;
+  position:relative;
+  overflow:hidden;
+}
+
+button::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+  transform:translateX(-100%);
+  transition:0.6s;
+}
+
+button:hover::before{
+  transform:translateX(100%);
 }
 
 button:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 20px #00f0ff;
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 0 25px #00f0ff88;
 }
 
-.note{
-  text-align:center;
+/* trust text */
+.trust{
+  margin-top:18px;
   font-size:12px;
-  opacity:.6;
-  margin-top:15px;
+  opacity:0.6;
 }
 
-.status{
-  text-align:center;
-  margin-top:15px;
-  font-size:13px;
-  color:#00f0ff;
+/* scroll reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:0.6s ease;
 }
 
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
 </style>
 </head>
 
 <body>
 
-<div id="loader">Loading NOTDHRUV.FX...</div>
+<div class="checkout-box reveal">
+  <h2>NOTDHRUV.FX</h2>
+  <div class="subtitle">LEVEL MAX Premium Sound FX</div>
 
-<div class="container">
+  <div class="price">₹50</div>
 
-  <div class="checkout-card">
+  <input type="email" id="email" placeholder="Enter your email" required>
 
-    <div class="brand">NOTDHRUV.FX</div>
-    <div class="subtitle">Premium SFX Experience</div>
+  <button onclick="payNow()">⚡ Secure Payment</button>
 
-    <div class="product">
-      <div>LEVEL MAX Viral SFX Pack</div>
-      <div class="price">₹50</div>
-    </div>
-
-    <input type="email" id="email" placeholder="Enter your email">
-
-    <button onclick="fakePayment()">Continue to Payment</button>
-
-    <div class="status" id="status"></div>
-
-    <div class="note">
-      Razorpay will be added here later
-    </div>
-
+  <div class="trust">
+    🔒 Instant delivery after payment<br>
+    💳 UPI • Card • Netbanking
   </div>
-
 </div>
 
 <script>
+// scroll reveal
+setTimeout(()=>{
+  document.querySelector(".reveal").classList.add("show");
+},200);
 
-/* Loader */
-window.onload=()=>{
-  setTimeout(()=>{
-    document.getElementById('loader').style.display='none';
-  },1200);
-}
-
-/* Temporary Payment Simulation */
-function fakePayment(){
-
-  const email=document.getElementById('email').value;
-  const status=document.getElementById('status');
+// payment function
+async function payNow(){
+  const email=document.getElementById("email").value;
 
   if(!email){
-    status.innerText="Enter email first";
+    alert("Please enter email");
     return;
   }
 
-  status.innerText="Preparing secure payment gateway...";
+  const formData=new FormData();
+  formData.append("email",email);
 
-  setTimeout(()=>{
-    status.innerText="Payment gateway will open here (Razorpay later)";
-  },1500);
+  try{
+    const res=await fetch("https://notdhruv-fx-website.onrender.com/send-email",{
+      method:"POST",
+      body:formData
+    });
 
+    const text=await res.text();
+
+    if(text.toLowerCase().includes("sent")){
+      alert("✅ Payment received! Download link sent.");
+    }else{
+      alert("❌ Email failed. Check server.");
+    }
+  }catch(err){
+    alert("❌ Server error");
+  }
 }
-
 </script>
 
 </body>
