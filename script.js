@@ -38,7 +38,7 @@ async function submitPaid() {
     formData.append("email", email);
     formData.append("screenshot", file);
 
-    fetch("https://your-real-render-link.onrender.com/send-email", {
+    fetch("https://notdhruv-fx-website.onrender.com/send-email", {
   method: "POST",
   body: formData
 });
